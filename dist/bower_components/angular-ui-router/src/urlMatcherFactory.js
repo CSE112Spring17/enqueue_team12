@@ -816,7 +816,7 @@ function $UrlMatcherFactory() {
    *     decode: function(value, key) {
    *       // Look up the object by ID, using the parameter
    *       // name (key) to call the correct service
-   *       return services[key].findById(value);
+   *       return services[key].findOne(value);
    *     },
    *     is: function(object, key) {
    *       // Check that object is a valid dbObject

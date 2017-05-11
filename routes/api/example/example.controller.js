@@ -47,7 +47,7 @@ exports.show = function(req, res) {
     var collection = db.get('myCollection');
 
     // query to create entry in collection
-    collection.findById(req.params.id, function (err, doc) {
+    collection.findOne(req.params.id, function (err, doc) {
     if(err) { return handleError(res, err); }
     if(!doc) { return res.sendStatus(404); }// res.send is deprecated
     return res.json(doc);

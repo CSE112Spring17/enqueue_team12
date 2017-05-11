@@ -72,7 +72,7 @@ exports.retrieve = function (req, res, next) {
     var db = req.db;
     var appointments = db.get('appointments');
 
-    appointments.findById(req.params.id, function (err, doc) {
+    appointments.findOne(req.params.id, function (err, doc) {
         if (err) {
             return next(err);
         }

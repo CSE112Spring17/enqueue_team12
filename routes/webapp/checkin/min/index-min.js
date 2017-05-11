@@ -33,7 +33,7 @@ module.exports = router;
 function updateBusiness(req, res, next) {
     //Simple case: first time on the page
     if (!req.session.business) {
-        req.db.get('businesses').findById(req.params.id, function (err, business) {
+        req.db.get('businesses').findOne(req.params.id, function (err, business) {
             if (err) {
                 return next(err);
             }
@@ -52,7 +52,7 @@ function updateBusiness(req, res, next) {
             if (err) {
                 return next(err);
             }
-            req.db.get('businesses').findById(req.params.id, function (err, business) {
+            req.db.get('businesses').findOne(req.params.id, function (err, business) {
                 if (err) {
                     return next(err);
                 }

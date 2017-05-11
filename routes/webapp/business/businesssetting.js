@@ -10,7 +10,7 @@ exports.post = function (req, res) {
     var oldPassword = req.body.oldPassword;
     var newPassword = req.body.newPassword;
     var confirmPassword = req.body.confirmPassword;
-    businesses.findById(bid, function (err, result) {
+    businesses.findOne(bid, function (err, result) {
         if (err) {
                 return next(err);
             }

@@ -18,7 +18,7 @@ exports.get = function (req,res) {
     var employees = db.get('employees');
     var businesses = db.get('businesses');
 
-    businesses.findById(businessID,
+    businesses.findOne(businessID,
         function (err, business){
             if(err){
                 return next(err);
@@ -235,22 +235,23 @@ exports.setCompanyInfo = function (req, res) {
 exports.uploadLogo = function(req, res, next){
 
     var db = req.db;
-    var businesses = db.get('businesses');
+    var businesses = db.get('businesses') ;
     var businessID = req.user[0].business;
 
-    if(req.files.userLogo){
-
-        businesses.findById(businessID,
+    if(req.files[0]){
+        businesses.findOne(businessID,
             function (err, results){
 
                 if(err){
                     return next(err);
                 }
-
-                fs.unlink('public/'+results.logo);
+                if(results.logo !== 'http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png')
+                {
+                  //fs.unlink('public/'+results.logo);
+                }
             }
         );
-        imgur.uploadFile(req.files.userLogo.path)
+        imgur.uploadFile(req.files[0].path)
             .then(function (json) {
                 businesses.updateById(businessID, {
                         $set: {
@@ -264,7 +265,7 @@ exports.uploadLogo = function(req, res, next){
                         }
 
                         render(req, res, {
-                            edited:'Succesfully uploaded file: '+req.files.userLogo.originalname,
+                            edited:'Succesfully uploaded file: '+req.files[0].originalname,
                             logo: json.data.link
                         });
                     }
@@ -276,7 +277,7 @@ exports.uploadLogo = function(req, res, next){
             });
 
     } else {
-        businesses.findById(businessID,
+        businesses.findOne(businessID,
             function (err, results){
                 if(err){
                     return next(err);
@@ -314,7 +315,7 @@ function render(req, res, additionalFields) {
     var employees = db.get('employees');
     var businesses = db.get('businesses');
 
-    businesses.findById(businessID,
+    businesses.findOne(businessID,
         function (err, business){
             if(err){
                 return next(err);

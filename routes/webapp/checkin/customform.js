@@ -57,7 +57,7 @@ function makeForm(db, businessId, body, fn) {
     var forms = db.get('forms');
 
     //Find the business and get their form
-    businesses.findById(businessId, function (err, business) {
+    businesses.findOne(businessId, function (err, business) {
         if (err) {
             return fn(err);
         }
@@ -176,7 +176,7 @@ exports.post = function (req, res, next) {
                     }
 
                     //Find the employee this appointment belongs to
-                    db.get('employees').findById(appt.employee, function (err, employee) {
+                    db.get('employees').findOne(appt.employee, function (err, employee) {
                         if (err) {
                             return next(err);
                         }

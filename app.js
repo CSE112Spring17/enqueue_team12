@@ -30,7 +30,7 @@ app.io = require('socket.io')();
 
 global.__base = __dirname + '/';
 
-var mongoURI = process.env.MONGOLAB_URI || 'YOUR MONGODB CONNECTION ON mLAB';
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://root:qwerty@ds133271.mlab.com:33271/team-fubar';
 //var mongoURI = process.env.MONGOLAB_URI || 'mongodb://admin:admin@ds061335.mongolab.com:61335/heroku_w9bxpzpc';
 console.log('Connecting to DB: ' + mongoURI);
 var db = monk(mongoURI);
@@ -83,23 +83,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(favicon(path.join(__dirname,'public', 'images', 'favicon.ico')));
 
+const imageFilter = function (req, file, cb) {
+  // accept image only
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    return cb(new Error('Only image files are allowed!'), false);
+  }
+  cb(null, true);
+};
+
 app.use(multer({
   dest: __dirname + '/public/images/uploads/',
-  onFileUploadStart: function (file) {
-    console.log(file.mimetype);
-    if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
-      return false;
-    } else {
-      console.log(file.fieldname + ' is starting ...');
-    }
-  },
-  onFileUploadData: function (file, data) {
-    console.log(data.length + ' of ' + file.fieldname + ' arrived');
-  },
-  onFileUploadComplete: function (file) {
-    console.log(file.fieldname + ' uploaded to  ' + file.path);
-  }
-}));
+  fileFilter: imageFilter
+  }).any());
 
 
 
@@ -113,7 +108,14 @@ app.use(express.static(path.join(__dirname, 'static')));
 //note to j
 
 // required for passport
-app.use(session({secret: '1234567890QWERTY'}));
+// app.use(session({secret: '1234567890QWERTY'}));
+app.use(session({
+  secret: '1234567890QWERTY',
+  name: 'cookie',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
