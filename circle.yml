@@ -2,22 +2,22 @@ machine:
   node:
     version: 7.10.0
 
-#dependencies:
-#  pre:
-#    - pyenv global 2.7.12
-#    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-#    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
-#    - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-#    - sudo /opt/google-cloud-sdk/bin/gcloud config set project $GCLOUD_PROJECT_ID
-#    - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone $GCLOUD_INSTANCE_ZONE
+dependencies:
+  pre:
+    - pyenv global 2.7.12
+    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set project $GCLOUD_PROJECT_ID
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone $GCLOUD_INSTANCE_ZONE
 
 override:
   - npm test
   # - npm run config
   # - npm run e2e
 
-#deployment:
-#  staging:
-#    branch: development
-#    commands:
-#      - ssh $GCLOUD_DEV_CREDENTIALS 'cd /home/justin8chou/CSE112Team12 && git pull && npm install && npm test && npm run esdoc'
+deployment:
+  staging:
+    branch: development
+    commands:
+      - ssh $GCLOUD_DEV_CREDENTIALS 'cd /home/justin8chou/enqueue_team12 && git pull && npm install && npm test'
