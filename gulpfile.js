@@ -336,11 +336,11 @@ plugins.checkPages(console, options, callback);
 var gulp = require('gulp'),
     apidoc = require('gulp-apidoc');
 
-gulp.task('apidoc', function(){
-          plugins.apidoc.exec({
+gulp.task('apidoc', function(done){
+          apidoc({
             src: "routes/api",
             dest: "apidoc/"
-          });
+          },done);
 });
 
 // Deploy API Docs to gh pages

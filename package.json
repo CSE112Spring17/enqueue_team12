@@ -7,7 +7,8 @@
   "scripts": {
     "build": "gulp",
     "start": "node ./bin/www",
-    "test": "gulp test"
+    "test": "gulp test",
+    "docGen": "gulp apidoc"
   },
   "dependencies": {
     "async": "^2.4.0",

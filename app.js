@@ -140,8 +140,7 @@ app.use(function(req, res, next) {
 // Set Webapp Routes
 app.use('/office', require('./routes/webapp/checkin'));
 app.use('/', businessRoutes);
-
-
+app.use('/docs', express.static(path.join(__dirname, 'apidoc')));
 
 // Set Mobile Routes
 app.use('/', mobileAuth);
