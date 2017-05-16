@@ -7,8 +7,9 @@
   "scripts": {
     "build": "gulp",
     "start": "node ./bin/www",
-    "test": "gulp test",
-    "docGen": "gulp apidoc"
+    "test": "mocha",
+    "docGen": "gulp apidoc",
+    "e2e": "nightwatch --config nightwatch.conf.BASIC.js"
   },
   "dependencies": {
     "async": "^2.4.0",
@@ -60,15 +61,13 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-open": "^2.0.0",
     "gulp-shell": "^0.6.3",
-    "jasmine-core": "^2.2.0",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
-    "karma": "^1.7.0",
-    "karma-chrome-launcher": "^2.1.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.4",
+    "mocha": "^3.4.1",
     "mongobackup": "^0.2.1",
     "phantomjs": "^2.1.7",
+    "selenium-download": "^2.0.10",
+    "should": "^11.2.1",
     "yargs": "^8.0.1"
   },
   "engines": {
