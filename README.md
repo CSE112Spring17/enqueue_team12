@@ -1,4 +1,4 @@
-# web-app [ ![Codeship Status for CSE112-GoldTeam/web-app](https://codeship.com/projects/5f33bf40-cb9d-0133-dbda-4a84e368cd36/status?branch=master)](https://codeship.com/projects/59497)
+# Enqueue [![CircleCI](https://circleci.com/gh/CSE112Spring17/enqueue_team12/tree/master.svg?style=svg)](https://circleci.com/gh/CSE112Spring17/enqueue_team12/tree/master)
 
 First Run
 ----------------------------
@@ -17,10 +17,52 @@ First Run
 6. Use ``gulp`` to run the application
 7. Navigate your browser to [http://localhost:4000](http://localhost:4000/)
 
-Push to testing environment
+Development Flow
 ----------------------------
-1. Simply push your experimental changes to the ``develop`` branch.
-2. Changes may be view on the [staging site](http://fubar-staging.herokuapp.com/).
+
+* Checkout `Dev` Branch
+
+```
+git checkout Dev
+git pull
+```
+* Branch off of Dev
+
+```
+git checkout -b <branch_name>
+```
+* Develop on that branch
+* Thoroughly test your new code
+* Push up code to your branch
+
+```
+git add .
+git commit -m "<some_message>"
+git push
+``` 
+* Create a pull Request
+	* From the Project Github Page
+![alt text](http://i.imgur.com/eNYkKVQ.png "Pull Request Button")
+	* Make sure you are merging your branch into Dev
+![alt text](http://i.imgur.com/NB0FQuZ.png "Pull Request Button")
+	* Once Integration Tests to pass on codeship and a thumbs up is received from another team member in the commments merge your branch into Dev and Delete your branch (Github provides all this functionality from the pull request page)
+
+Deployment Flow
+----------------------------
+* Using `Google Compute Engine` with `ngninx`
+* Dev Host: `http://104.199.112.182/`
+* Production Host: `coming soon`
+* On Fridays we will deploy the Dev Branch to the Dev Host (might change to automatic deployment)
+* On Saturdays we will Merge the Dev Branch into Master and deploy to production Host
+* When we push to the Dev branch, if all tests are passing, it will be deployed to the Dev server.
+
+Testing Flow
+----------------------------
+* Add unit tests to enqueue/test/test.js
+* Add e2e tests to enqueue/test/e2e/e2e.js
+
+#### Running Tests
+* `npm test`
 
 Logging in as Peter
 ----------------------------
@@ -37,13 +79,3 @@ Slack Integration can be found here
 	
 	username: gev@ucsd.edu
 	password: teamfubar
-
-Access to CI platform on Codeship
-----------------------------
-Go to the [Codeship](http://codeship.io) website.
-Use the following credentials:
-
-	username: gev@ucsd.edu
-	password: teamfubar
-
-Click the restart button on the latest build to rebuild it.
