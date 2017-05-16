@@ -5,9 +5,9 @@
 
   <testsuite name="e2e"
     errors="0" failures="0" hostname="" id="" package="e2e" skipped="0"
-    tests="1" time="15.57" timestamp="Tue, 16 May 2017 02:16:52 GMT">
+    tests="1" time="8.503" timestamp="Tue, 16 May 2017 02:21:16 GMT">
   
-    <testcase name="E2E Enqueue Testing" classname="e2e" time="15.57" assertions="4">
+    <testcase name="E2E Enqueue Testing" classname="e2e" time="8.503" assertions="4">
 
     
 
