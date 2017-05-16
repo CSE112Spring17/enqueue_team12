@@ -1,5 +1,5 @@
-describe ("test", function(){
+describe ("Testing Enqueue", function(){
 	it("should work", function () {
-		expect(true).toBe(true)
-	})
-})
+		true.should.equal(true);
+	});
+});
