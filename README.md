@@ -1,5 +1,4 @@
 # Enqueue [![CircleCI](https://circleci.com/gh/CSE112Spring17/enqueue_team12/tree/development.svg?style=svg)](https://circleci.com/gh/CSE112Spring17/enqueue_team12/tree/development)
-
 First Run
 ----------------------------
 1. Setup Account with [mLab](https://mlab.com/)
