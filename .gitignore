@@ -1,5 +1,7 @@
 node_modules/*
 db/*
+.idea
 .idea/*
 config.codekit
 apidoc/*
+server/config/log
